@@ -4,6 +4,7 @@ This is a simple movie listing application built with React and TypeScript.
 
 ## Directory Structure
 
+```
 ├── .gitignore
 ├── package.json
 ├── README.md
@@ -16,6 +17,7 @@ This is a simple movie listing application built with React and TypeScript.
 │   └── index.tsx
 ├── tsconfig.json
 └── webpack.config.js
+```
 
 ## Running Locally
 
@@ -46,4 +48,3 @@ npm run start
 ```
 
 The application should now be running at `http://localhost:8080`.
-```
