@@ -30,13 +30,16 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@sequelize/postgres": "^7.0.0-alpha.41",
     "body-parser": "^1.20.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "pg": "^8.11.5",
+    "pg-hstore": "^2.3.4",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "sequelize": "^6.37.3"
   }
 }
