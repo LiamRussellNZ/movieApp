@@ -8,6 +8,7 @@ const app = express();
 
 // Parse JSON requests
 app.use(cors({ origin: "http://localhost:9000" }));
+app.use(express.json());
 
 // Use movies router for /api/movies endpoint
 app.use("/api", router);

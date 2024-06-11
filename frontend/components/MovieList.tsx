@@ -29,14 +29,40 @@ const MovieList: React.FC = () => {
   };
 
   const handleAddMovie = () => {
-    if (movieTitle.trim() !== '' && director.trim() !== '') {
-      setMovies([]);
-      setDirector('');
-      setMovieTitle('');
-    } else {
-      setError('Both movie title and director are required to be filled in to add a movie.');
-    }
-  };
+  if (movieTitle.trim() !== '' && director.trim() !== '') {
+    // Create a new movie object
+    const newMovie = { title: movieTitle, director };
+
+    // Make a POST request to the backend
+    fetch('http://localhost:3000/api/movies', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newMovie),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('HTTP error ' + response.status);
+        }
+        return response.json();
+      })
+      .then((movie) => {
+        // Add the new movie to the list of movies
+        setMovies([...movies, movie]);
+
+        // Clear the input fields
+        setMovieTitle('');
+        setDirector('');
+      })
+      .catch((error) => {
+        console.error('Error adding movie:', error);
+        setError('Error adding movie. Please try again.');
+      });
+  } else {
+    setError('Both movie title and director are required to be filled in to add a movie.');
+  }
+};
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
