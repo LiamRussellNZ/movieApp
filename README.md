@@ -37,55 +37,60 @@ This is a simple movie listing application built with React and TypeScript.
 
 ## Running Locally
 
-To run this project locally, you'll need to have Node.js and npm installed on your machine. This project is broken into two parts. The frontend (React pages) and the backend. You will need both running for the app to work.
+To run this project locally, you'll need to have Node.js and npm installed on your machine. This project is broken into two parts: the frontend (React pages) and the backend. You will need both running for the app to work.
 
-1. First, clone the repository to your local machine:
+Follow these steps:
 
-```sh
-git clone https://github.com/LiamRussellNZ/movieApp.git
-```
+1. **Clone the repository** to your local machine:
 
-2. Navigate into the project directory:
+    ```sh
+    git clone https://github.com/LiamRussellNZ/movieApp.git
+    ```
 
-```sh
-cd movieapp
-```
+2. **Navigate into the project directory**:
 
-3. Start the frontend:
-    a.  Navigate to the frontend folder:
+    ```sh
+    cd movieapp
+    ```
 
-```sh
-cd frontend
-```
+3. **Start the backend**:
 
-    b. Install Node packages for frontend:
+    a. Navigate to the backend folder:
 
-```sh  
-npm install
-```
+        ```sh
+        cd backend
+        ```
+
+    b. Install Node packages for the backend:
+
+        ```sh  
+        npm install
+        ```
+
+    c. Start the backend:
+
+        ```sh  
+        node server.js
+        ```
+
+4. **Start the frontend**:
+
+    a. Navigate to the frontend folder:
+
+        ```sh
+        cd ../frontend
+        ```
+
+    b. Install Node packages for the frontend:
+
+        ```sh  
+        npm install
+        ```
 
     c. Start the frontend:
-```sh  
-npm run start
-```
 
-4. Start the backend:
-
-    a.  Navigate to the backend folder:
-
-```sh
-cd backend
-```
-
-    b. Install Node packages for frontend:
-
-```sh  
-npm install
-```
-
-    c. Start the frontend:
-```sh  
-node server.js
-```
+        ```sh  
+        npm run start
+        ```
 
 The application should now be running at `http://localhost:8080`.
