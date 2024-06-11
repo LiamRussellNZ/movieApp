@@ -5,23 +5,39 @@ This is a simple movie listing application built with React and TypeScript.
 ## Directory Structure
 
 ```
+.
 ├── .gitignore
-├── package.json
-├── README.md
-├── src/
+├── backend/
+│   ├── .env
+│   ├── config.js
+│   ├── models/
+│   │   └── Movie.ts
+│   ├── package.json
+│   ├── routes/
+│   │   └── default.ts
+│   ├── server.js
+│   └── tsconfig.json
+├── documentation/
+│   ├── apiQueries/
+│   │   └── get_movies.md
+│   └── database/
+│       ├── postgres_setUp.md
+│       └── postgress_setTable_insertValues.md
+├── frontend/
 │   ├── components/
 │   │   └── MovieList.tsx
-│   ├── models/
-│   │   └── models.tsx
-│   ├── index.html
-│   └── index.tsx
-├── tsconfig.json
+│   ├── package.json
+│   ├── public/
+│   │   ├── index.html
+│   │   └── index.tsx
+│   └── tsconfig.json
+├── README.md
 └── webpack.config.js
 ```
 
 ## Running Locally
 
-To run this project locally, you'll need to have Node.js and npm installed on your machine.
+To run this project locally, you'll need to have Node.js and npm installed on your machine. This project is broken into two parts. The frontend (React pages) and the backend. You will need both running for the app to work.
 
 1. First, clone the repository to your local machine:
 
@@ -35,16 +51,41 @@ git clone https://github.com/LiamRussellNZ/movieApp.git
 cd movieapp
 ```
 
-3. Install the project dependencies:
+3. Start the frontend:
+    a.  Navigate to the frontend folder:
 
 ```sh
+cd frontend
+```
+
+    b. Install Node packages for frontend:
+
+```sh  
 npm install
 ```
 
-4. Start the development server:
+    c. Start the frontend:
+```sh  
+npm run start
+```
+
+4. Start the backend:
+
+    a.  Navigate to the backend folder:
 
 ```sh
-npm run start
+cd backend
+```
+
+    b. Install Node packages for frontend:
+
+```sh  
+npm install
+```
+
+    c. Start the frontend:
+```sh  
+node server.js
 ```
 
 The application should now be running at `http://localhost:8080`.

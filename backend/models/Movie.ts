@@ -1,8 +1,4 @@
-require("dotenv").config();
-
-const dbUser = process.env.DB_USER || "";
-const dbPass = process.env.DB_PASS || "";
-const dbHost = process.env.DB_HOST || "";
+const { dbUser, dbPass, dbHost } = require("../config.js");
 
 const connectionString = `postgres://${dbUser}:${dbPass}@${dbHost}/movies`;
 
@@ -34,4 +30,4 @@ Movie.init(
   }
 );
 
-module.exports = Movie;
+export default Movie;

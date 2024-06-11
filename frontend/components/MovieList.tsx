@@ -1,14 +1,24 @@
 // src/MovieList.tsx
 import { error } from 'console';
-import React, { useState } from 'react';
-import { Movie } from '../../backend/models/Movie';
+import React, { useState, useEffect } from 'react';
 
+interface Movie {
+  title: string;
+  director: string
+}
 
 const MovieList: React.FC = () => {
   const [movieTitle, setMovieTitle] = useState('');
   const [director, setDirector] = useState('');
   const [movies, setMovies] = useState<Movie[]>([]);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/movies')
+      .then((response) => response.json())
+      .then((data: Movie[]) => setMovies(data))
+      .catch((error) => console.error('Error fetching movies:', error));
+  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.placeholder === 'Movie title') {
@@ -20,7 +30,7 @@ const MovieList: React.FC = () => {
 
   const handleAddMovie = () => {
     if (movieTitle.trim() !== '' && director.trim() !== '') {
-      setMovies([...movies, new Movie(movieTitle, director)]);
+      setMovies([]);
       setDirector('');
       setMovieTitle('');
     } else {
@@ -64,6 +74,15 @@ const MovieList: React.FC = () => {
           </React.Fragment>
         ))}
       </ul>
+      <div>
+    <ul>
+      {movies.map((movie, index) => (
+        <li key={index}>
+          {movie.title} - Directed by {movie.director}
+        </li>
+      ))}
+    </ul>
+  </div>
     </div>
   );
 };
