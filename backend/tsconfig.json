@@ -1,0 +1,15 @@
+{
+    "compilerOptions": {
+      "target": "ES6",
+      "module": "commonjs",
+      "outDir": "./dist",
+      "rootDir": "./",
+      "strict": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true,
+    },
+    "include": ["**/*.ts", "routes/default.mjs"],
+    "exclude": ["node_modules"]
+  }

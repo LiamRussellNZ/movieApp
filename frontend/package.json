@@ -2,10 +2,11 @@
   "name": "movieapp",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack serve --open"
+    "start": "cd .. && webpack serve --open"
   },
   "keywords": [],
   "author": "",
@@ -18,11 +19,13 @@
     "autoprefixer": "^10.4.19",
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.0",
+    "node-polyfill-webpack-plugin": "^4.0.0",
     "postcss-loader": "^8.1.1",
     "sass": "^1.77.2",
     "sass-loader": "^14.2.1",
     "style-loader": "^4.0.0",
     "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
     "typescript": "^5.4.5",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4",
@@ -30,13 +33,19 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@sequelize/postgres": "^7.0.0-alpha.41",
     "body-parser": "^1.20.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
+    "os-browserify": "^0.3.0",
+    "path-browserify": "^1.0.1",
     "pg": "^8.11.5",
+    "pg-hstore": "^2.3.4",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "sequelize": "^6.37.3"
   }
 }

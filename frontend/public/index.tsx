@@ -1,7 +1,7 @@
 // src/index.tsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import MovieList from './components/MovieList';
+import MovieList from '../components/MovieList';
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
