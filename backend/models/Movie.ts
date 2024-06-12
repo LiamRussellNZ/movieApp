@@ -1,9 +1,5 @@
-import { dbUser, dbPass, dbHost } from "../config.js";
-
-const connectionString = `postgres://${dbUser}:${dbPass}@${dbHost}/movies`;
-
-const { Sequelize, Model, DataTypes } = require("sequelize");
-const sequelize = new Sequelize(connectionString);
+import { Model, DataTypes } from "sequelize";
+import sequelize from "../db";
 
 class Movie extends Model {}
 
