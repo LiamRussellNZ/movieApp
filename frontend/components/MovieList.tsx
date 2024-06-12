@@ -3,6 +3,7 @@ import { error } from 'console';
 import React, { useState, useEffect } from 'react';
 
 interface Movie {
+  id: number;
   title: string;
   director: string
 }
@@ -70,6 +71,26 @@ const MovieList: React.FC = () => {
     }
   };
 
+  const handleDeleteMovie = (id: number) => {
+  fetch(`http://localhost:3000/api/movies/${id}`, {
+    method: 'DELETE',
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('HTTP error ' + response.status);
+      }
+      return response.json();
+    })
+    .then(() => {
+      // Remove the movie from the list of movies
+      setMovies(movies.filter((movie) => movie.id !== id));
+    })
+    .catch((error) => {
+      console.error('Error deleting movie:', error);
+      setError('Error deleting movie. Please try again.');
+    });
+}
+
   return (
     <div>
       <div>
@@ -91,24 +112,15 @@ const MovieList: React.FC = () => {
         {error && <div className='alert alert-danger'>{error}</div>}
       </div>
       <ul>
-        {movies.map((movie, index) => (
-          <React.Fragment key={index}>
+        {movies.map((movie, id) => (
+          <React.Fragment key={id}>
             <div>
               <li>{movie.title} - Directed by {movie.director}</li>
-              <button type='button' className='btn btn-danger' onClick={() => setMovies(movies.filter((_, i) => i !== index))}><i className="bi bi-trash-fill"></i></button>
+              <button type='button' className='btn btn-danger' onClick={() => handleDeleteMovie(movie.id)}><i className="bi bi-trash-fill"></i></button>
             </div>
           </React.Fragment>
         ))}
       </ul>
-      <div>
-    <ul>
-      {movies.map((movie, index) => (
-        <li key={index}>
-          {movie.title} - Directed by {movie.director}
-        </li>
-      ))}
-    </ul>
-  </div>
     </div>
   );
 };

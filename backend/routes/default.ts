@@ -38,4 +38,30 @@ router.post("/movies", async (req, res) => {
   }
 });
 
+router.delete("/movies/:id", async (req, res) => {
+  try {
+    // Extract the movie ID from the request parameters
+    const { id } = req.params;
+    console.log(`Request to delete movie with id: ${id}`);
+
+    // Find the movie with the specified ID
+    const movie = await Movie.findByPk(id);
+
+    // If the movie is not found, return a 404 error
+    if (!movie) {
+      console.log(`Movie with id ${id} not found`);
+      return res.status(404).json({ error: "Movie not found" });
+    }
+
+    // Delete the movie from the database
+    await movie.destroy();
+
+    // Return a success message
+    res.json({ message: "Movie deleted successfully" });
+  } catch (err) {
+    console.error("Error deleting movie:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 export default router;

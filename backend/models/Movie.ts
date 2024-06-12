@@ -1,4 +1,4 @@
-const { dbUser, dbPass, dbHost } = require("../config.js");
+import { dbUser, dbPass, dbHost } from "../config.js";
 
 const connectionString = `postgres://${dbUser}:${dbPass}@${dbHost}/movies`;
 
