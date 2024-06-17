@@ -4,7 +4,7 @@
     "scripts": {
       "build": "",
       "test": "",
-      "start": "node example.js"
+      "start": ""
     },
     "keywords": [],
     "author": "",
@@ -13,14 +13,6 @@
     "engines": {
       "node": "20.11.x",
       "npm": "10.2.x"
-    },
- "devDependencies": {
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4"
-  },
-  "dependencies": {
-    "webpack": "^5.91.0",
-    "webpack-cli": "^4.6.0"
-  }
+    }
 }
   

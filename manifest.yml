@@ -1,7 +1,7 @@
 ---
 applications:
 - name: movie-app
-  command: node example.js
+  command: export NODE_ENV=development && cd frontend && npm install && npm list && npm run build && npm run start
   memory: 500M
   buildpacks:
   - nodejs_buildpack

@@ -7,7 +7,7 @@ const { json } = bodyParser;
 const app = express();
 
 // Parse JSON requests
-app.use(cors({ origin: "http://localhost:9000" }));
+app.use(cors({ origin: "http://localhost:8080" }));
 app.use(express.json());
 
 // Use movies router for /api/movies endpoint
