@@ -1,0 +1,7 @@
+---
+applications:
+- name: movie-app
+  command: node example.js
+  memory: 500M
+  buildpacks:
+  - nodejs_buildpack
