@@ -50,7 +50,7 @@ router.delete("/movies/:id", async (req, res) => {
     console.log(`Request to delete movie with id: ${id}`);
 
     // Find the movie with the specified ID
-    const movie = await MovieModel.findByPk(id);
+    const movie = await MovieModel.get(id);
 
     // If the movie is not found, return a 404 error
     if (!movie) {
@@ -58,8 +58,7 @@ router.delete("/movies/:id", async (req, res) => {
       return res.status(404).json({ error: "Movie not found" });
     }
 
-    // Delete the movie from the database
-    await movie.destroy();
+    await MovieModel.delete(id);
 
     // Return a success message
     res.json({ message: "Movie deleted successfully" });
