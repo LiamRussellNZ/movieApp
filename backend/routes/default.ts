@@ -1,13 +1,15 @@
 import * as express from "express";
 import { Request, Response } from "express";
-import Movie from "../models/Movie";
+import MovieModel from "../models/Movie";
+import { v4 as uuidv4 } from "uuid";
 
 const router = express.Router();
 
 router.get("/movies", async (req: Request, res: Response) => {
   try {
     // Fetch movies from the database using the Movie model
-    const movies: Movie[] = await Movie.findAll();
+    const movies: InstanceType<typeof MovieModel>[] =
+      await MovieModel.scan().exec();
 
     // Return the list of movies
     res.json(movies);
@@ -27,8 +29,11 @@ router.post("/movies", async (req, res) => {
       return res.status(400).json({ error: "Title and director are required" });
     }
 
+    // Generate a unique ID for the new movie
+    const id = uuidv4();
+
     // Create a new movie in the database using the Movie model
-    const newMovie = await Movie.create({ title, director });
+    const newMovie = await MovieModel.create({ id, title, director });
 
     // Return the newly created movie
     res.status(201).json(newMovie);
@@ -45,7 +50,7 @@ router.delete("/movies/:id", async (req, res) => {
     console.log(`Request to delete movie with id: ${id}`);
 
     // Find the movie with the specified ID
-    const movie = await Movie.findByPk(id);
+    const movie = await MovieModel.findByPk(id);
 
     // If the movie is not found, return a 404 error
     if (!movie) {

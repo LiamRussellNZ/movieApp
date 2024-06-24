@@ -1,29 +1,20 @@
-import { Model, DataTypes } from "sequelize";
-import sequelize from "../db";
+import dynamoose from "../db";
 
-class Movie extends Model {}
-
-Movie.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    director: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+const MovieSchema = new dynamoose.Schema({
+  id: {
+    type: String,
+    hashKey: true,
   },
-  {
-    sequelize,
-    tableName: "movies",
-    timestamps: false,
-  }
-);
+  title: {
+    type: String,
+    required: true,
+  },
+  director: {
+    type: String,
+    required: true,
+  },
+});
+
+const Movie = dynamoose.model("Movies", MovieSchema);
 
 export default Movie;
