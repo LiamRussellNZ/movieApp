@@ -1,6 +1,16 @@
 # MovieApp
 
-This is a simple movie listing application built with React and TypeScript.
+This is a simple movie listing application built with React and TypeScript. The app ultises Webpack for bundling of the JS/TS artifacts.
+It has a common three-tiered architecture as illustruted by the below diagram.
+
+```mermaid
+graph TD;
+    A[Frontend built in React] --> B[API built with Express];
+    B --> C[DynamoDB hosted in AWS];
+    style A fill:#f9f,stroke:#333,stroke-width:2px;
+    style B fill:#bbf,stroke:#333,stroke-width:2px;
+    style C fill:#fbf,stroke:#333,stroke-width:2px;
+```
 
 ## Directory Structure
 
@@ -8,8 +18,7 @@ This is a simple movie listing application built with React and TypeScript.
 .
 ├── .gitignore
 ├── backend/
-│   ├── .env
-│   ├── config.js
+│   ├── db.ts
 │   ├── models/
 │   │   └── Movie.ts
 │   ├── package.json
@@ -31,13 +40,16 @@ This is a simple movie listing application built with React and TypeScript.
 │   │   ├── index.html
 │   │   └── index.tsx
 │   └── tsconfig.json
-├── README.md
-└── webpack.config.js
+│   └── webpack.config.js
+├── instance_config.json
+├── manifest.yml
+├── package.json
+└── README.md
 ```
 
 ## Running Locally
 
-To run this project locally, you'll need to have Node.js and npm installed on your machine. This project is broken into two parts: the frontend (React pages) and the backend. You will need both running for the app to work.
+To run this project locally, you'll need to have Node.js and npm installed on your machine. Both the frontend and backend code are housed in this repository. 
 
 Follow these steps:
 
@@ -47,50 +59,26 @@ Follow these steps:
     git clone https://github.com/LiamRussellNZ/movieApp.git
     ```
 
-2. **Navigate into the project directory**:
+2. **Navigate into the project frontend directory**:
 
     ```sh
-    cd movieapp
+    cd movieapp/frontend
     ```
 
-3. **Start the backend**:
+3. **Compile and Build the frondend components**:
 
-    a. Navigate to the backend folder:
+    ```sh  
+    tsc
+    npm run build
+    ```
 
-        ```sh
-        cd backend
-        ```
+4. **Start the server**:
 
-    b. Install Node packages for the backend:
+    Navigate to the backend folder and then run:
 
-        ```sh  
-        npm install
-        ```
-
-    c. Start the backend:
-
-        ```sh  
-        node server.js
-        ```
-
-4. **Start the frontend**:
-
-    a. Navigate to the frontend folder:
-
-        ```sh
-        cd ../frontend
-        ```
-
-    b. Install Node packages for the frontend:
-
-        ```sh  
-        npm install
-        ```
-
-    c. Start the frontend:
-
-        ```sh  
-        npm run start
-        ```
+    ```sh
+    cd ../backend
+    npm run start
+    ```
 
 The application should now be running at `http://localhost:8080`.
