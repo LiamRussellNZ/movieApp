@@ -15,7 +15,7 @@ const MovieList: React.FC = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/movies')
+    fetch('https://movie-app.app.ap.assurity.cloud/api/movies')
       .then((response) => response.json())
       .then((data: Movie[]) => setMovies(data))
       .catch((error) => console.error('Error fetching movies:', error));
@@ -35,7 +35,7 @@ const MovieList: React.FC = () => {
     const newMovie = { title: movieTitle, director };
 
     // Make a POST request to the backend
-    fetch('http://localhost:8080/api/movies', {
+    fetch('https://movie-app.app.ap.assurity.cloud/api/movies', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ const MovieList: React.FC = () => {
   };
 
   const handleDeleteMovie = (id: number) => {
-  fetch(`http://localhost:8080/api/movies/${id}`, {
+  fetch(`https://movie-app.app.ap.assurity.cloud/api/movies/${id}`, {
     method: 'DELETE',
   })
     .then((response) => {

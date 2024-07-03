@@ -1,0 +1,10 @@
+{
+    "table_name": "Movies",
+    "hash_key": "id",
+    "attributes": [
+      {
+        "name": "id",
+        "type": "S"
+      }
+    ]
+  }

@@ -29,12 +29,14 @@
         "webpack-dev-server": "^5.0.4"
     },
     "dependencies": {
+        "@aws-sdk/client-dynamodb": "^3.609.0",
+        "@aws-sdk/config-resolver": "^3.374.0",
+        "@aws-sdk/credential-provider-node": "^3.609.0",
+        "@aws-sdk/lib-dynamodb": "^3.609.0",
         "@popperjs/core": "^2.11.8",
-        "@sequelize/postgres": "^7.0.0-alpha.41",
         "@types/express": "^4.17.21",
         "@types/node": "^20.14.4",
         "aws-sdk": "^2.1645.0",
-        "cors": "^2.8.5",
         "dotenv": "^16.4.5",
         "dynamoose": "^4.0.1",
         "express": "^4.19.2",

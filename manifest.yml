@@ -1,9 +1,9 @@
 ---
 applications:
-- name: movie-app-2
+- name: movie-app
   command: cd backend && npm run start
-  memory: 500M
+  memory: 2G
   buildpacks:
   - nodejs_buildpack
   services:
-    - movie-ms-service
+    - dyna-movies-service

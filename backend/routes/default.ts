@@ -2,14 +2,28 @@ import * as express from "express";
 import { Request, Response } from "express";
 import MovieModel from "../models/Movie";
 import { v4 as uuidv4 } from "uuid";
+import { stdout } from "process";
 
 const router = express.Router();
 
 router.get("/movies", async (req: Request, res: Response) => {
   try {
+    stdout.write("Fetching movies\n");
+    stdout.write(
+      "Req data: \n" +
+        JSON.stringify({
+          url: req.url,
+          method: req.method,
+          headers: req.headers,
+        }) +
+        "\n"
+    );
     // Fetch movies from the database using the Movie model
     const movies: InstanceType<typeof MovieModel>[] =
       await MovieModel.scan().exec();
+
+    const responseBody = { movies };
+    stdout.write("Response body: \n" + JSON.stringify(responseBody) + "\n");
 
     // Return the list of movies
     res.json(movies);
