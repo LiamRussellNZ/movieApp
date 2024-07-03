@@ -7,9 +7,9 @@ It has a common three-tiered architecture as illustruted by the below diagram.
 graph LR;
     A[Frontend built in React] --> B[API built with Express];
     B --> C[DynamoDB hosted in AWS];
-    style A fill:#f0f0f0,stroke:#333,stroke-width:2px;
-    style B fill:#f0f0f0,stroke:#333,stroke-width:2px;
-    style C fill:#f0f0f0,stroke:#333,stroke-width:2px;
+    style A fill:#f0f0f0,stroke:#333,stroke-width:2px, color:black;
+    style B fill:#f0f0f0,stroke:#333,stroke-width:2px, color:black;
+    style C fill:#f0f0f0,stroke:#333,stroke-width:2px, color:black;
 ```
 
 ## Directory Structure
