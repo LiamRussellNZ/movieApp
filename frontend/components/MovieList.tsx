@@ -1,5 +1,3 @@
-// src/MovieList.tsx
-import { error } from 'console';
 import React, { useState, useEffect } from 'react';
 
 interface Movie {
@@ -31,10 +29,8 @@ const MovieList: React.FC = () => {
 
   const handleAddMovie = () => {
   if (movieTitle.trim() !== '' && director.trim() !== '') {
-    // Create a new movie object
     const newMovie = { title: movieTitle, director };
 
-    // Make a POST request to the backend
     fetch('https://movie-app.app.ap.assurity.cloud/api/movies', {
       method: 'POST',
       headers: {
@@ -49,10 +45,8 @@ const MovieList: React.FC = () => {
         return response.json();
       })
       .then((movie) => {
-        // Add the new movie to the list of movies
         setMovies([...movies, movie]);
 
-        // Clear the input fields
         setMovieTitle('');
         setDirector('');
       })
@@ -82,7 +76,6 @@ const MovieList: React.FC = () => {
       return response.json();
     })
     .then(() => {
-      // Remove the movie from the list of movies
       setMovies(movies.filter((movie) => movie.id !== id));
     })
     .catch((error) => {
