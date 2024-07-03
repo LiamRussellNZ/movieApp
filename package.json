@@ -1,0 +1,17 @@
+{
+    "name": "movieapp",
+    "version": "1.0.0",
+    "scripts": {
+      "build": "",
+      "test": "",
+      "start": ""
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "engines": {
+      "node": "20.11.x",
+      "npm": "10.2.x"
+    }
+}

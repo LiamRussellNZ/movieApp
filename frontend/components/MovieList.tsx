@@ -1,5 +1,3 @@
-// src/MovieList.tsx
-import { error } from 'console';
 import React, { useState, useEffect } from 'react';
 
 interface Movie {
@@ -15,7 +13,7 @@ const MovieList: React.FC = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/movies')
+    fetch('https://movie-app.app.ap.assurity.cloud/api/movies')
       .then((response) => response.json())
       .then((data: Movie[]) => setMovies(data))
       .catch((error) => console.error('Error fetching movies:', error));
@@ -31,11 +29,9 @@ const MovieList: React.FC = () => {
 
   const handleAddMovie = () => {
   if (movieTitle.trim() !== '' && director.trim() !== '') {
-    // Create a new movie object
     const newMovie = { title: movieTitle, director };
 
-    // Make a POST request to the backend
-    fetch('http://localhost:3000/api/movies', {
+    fetch('https://movie-app.app.ap.assurity.cloud/api/movies', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,10 +45,8 @@ const MovieList: React.FC = () => {
         return response.json();
       })
       .then((movie) => {
-        // Add the new movie to the list of movies
         setMovies([...movies, movie]);
 
-        // Clear the input fields
         setMovieTitle('');
         setDirector('');
       })
@@ -72,7 +66,7 @@ const MovieList: React.FC = () => {
   };
 
   const handleDeleteMovie = (id: number) => {
-  fetch(`http://localhost:3000/api/movies/${id}`, {
+  fetch(`https://movie-app.app.ap.assurity.cloud/api/movies/${id}`, {
     method: 'DELETE',
   })
     .then((response) => {
@@ -82,7 +76,6 @@ const MovieList: React.FC = () => {
       return response.json();
     })
     .then(() => {
-      // Remove the movie from the list of movies
       setMovies(movies.filter((movie) => movie.id !== id));
     })
     .catch((error) => {

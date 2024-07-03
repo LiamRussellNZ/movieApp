@@ -5,7 +5,7 @@ const NodePolyfillPlugin = require('node-polyfill-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './frontend/public/index.tsx',
+  entry: './public/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -36,7 +36,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './frontend/public/index.html',
+      template: './public/index.html',
     }),
     new webpack.IgnorePlugin({
       resourceRegExp: /^pg-native$/,

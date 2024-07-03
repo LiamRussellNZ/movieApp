@@ -1,0 +1,9 @@
+---
+applications:
+- name: movie-app
+  command: cd backend && npm run start
+  memory: 2G
+  buildpacks:
+  - nodejs_buildpack
+  services:
+    - dyna-movies-service
