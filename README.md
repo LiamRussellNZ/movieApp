@@ -4,12 +4,22 @@ This is a simple movie listing application built with React and TypeScript. The 
 It has a common three-tiered architecture as illustruted by the below diagram.
 
 ```mermaid
+%%{
+  init: {
+    'theme': 'forest',
+    'themeVariables': {
+      'primaryColor': '#BB2528',
+      'primaryTextColor': '#fff',
+      'primaryBorderColor': '#7C0000',
+      'lineColor': '#F8B229',
+      'secondaryColor': '#006100',
+      'tertiaryColor': '#fff'
+    }
+  }
+}%%
 graph LR;
     A[Frontend built in React] --> B[API built with Express];
     B --> C[DynamoDB hosted in AWS];
-    style A fill:#f0f0f0,stroke:#333,stroke-width:2px, color:black;
-    style B fill:#f0f0f0,stroke:#333,stroke-width:2px, color:black;
-    style C fill:#f0f0f0,stroke:#333,stroke-width:2px, color:black;
 ```
 
 ## Directory Structure
