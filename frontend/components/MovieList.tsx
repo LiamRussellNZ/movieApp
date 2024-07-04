@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import MovieCard from './MovieCard';
 
 interface Movie {
   id: number;
@@ -13,7 +14,7 @@ const MovieList: React.FC = () => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('https://movie-app.app.ap.assurity.cloud/api/movies')
+    fetch('/api/movies')
       .then((response) => response.json())
       .then((data: Movie[]) => setMovies(data))
       .catch((error) => console.error('Error fetching movies:', error));
@@ -31,7 +32,7 @@ const MovieList: React.FC = () => {
   if (movieTitle.trim() !== '' && director.trim() !== '') {
     const newMovie = { title: movieTitle, director };
 
-    fetch('https://movie-app.app.ap.assurity.cloud/api/movies', {
+    fetch('/api/movies', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ const MovieList: React.FC = () => {
   };
 
   const handleDeleteMovie = (id: number) => {
-  fetch(`https://movie-app.app.ap.assurity.cloud/api/movies/${id}`, {
+  fetch(`/api/movies/${id}`, {
     method: 'DELETE',
   })
     .then((response) => {
@@ -83,6 +84,8 @@ const MovieList: React.FC = () => {
       setError('Error deleting movie. Please try again.');
     });
 }
+
+const handleEditMovie = (movie: Movie) => {/*...*/};
 
   return (
     <div>
@@ -105,17 +108,18 @@ const MovieList: React.FC = () => {
         {error && <div className='alert alert-danger'>{error}</div>}
       </div>
       <ul>
-        {movies.map((movie, id) => (
-          <React.Fragment key={id}>
-            <div>
-              <li>{movie.title} - Directed by {movie.director}</li>
-              <button type='button' className='btn btn-danger' onClick={() => handleDeleteMovie(movie.id)}><i className="bi bi-trash-fill"></i></button>
-            </div>
-          </React.Fragment>
-        ))}
+      {movies.map((movie) => (
+          <MovieCard
+            key={movie.id}
+            movie={movie}
+            onDelete={handleDeleteMovie}
+            onEdit={handleEditMovie}
+          />
+      ))}
       </ul>
     </div>
   );
 };
 
 export default MovieList;
+export { Movie };

@@ -41,7 +41,10 @@ module.exports = {
     new webpack.IgnorePlugin({
       resourceRegExp: /^pg-native$/,
     }),
-    new NodePolyfillPlugin()
+    new NodePolyfillPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.REACT_APP_LOCAL': JSON.stringify(process.env.REACT_APP_LOCAL),
+    }),
   ],
   devServer: {
     static: {
