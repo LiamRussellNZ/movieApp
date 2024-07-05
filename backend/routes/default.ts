@@ -33,6 +33,26 @@ router.get("/movies", async (req: Request, res: Response) => {
   }
 });
 
+router.get("/movies/:id", async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    console.log(`Request to fetch movie with id: ${id}`);
+
+    const movie = await MovieModel.get(id);
+
+    if (!movie) {
+      console.log(`Movie with id ${id} not found`);
+      return res.status(404).json({ error: "Movie not found" });
+    }
+
+    const { title, director, synopsis } = movie;
+    res.json({ title, director, synopsis });
+  } catch (err) {
+    console.error("Error fetching movie:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 router.post("/movies", async (req, res) => {
   try {
     const { title, director } = req.body;

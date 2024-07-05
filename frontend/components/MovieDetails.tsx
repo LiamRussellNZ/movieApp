@@ -2,10 +2,21 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Movie } from './MovieList';
 
-// Dummy function to fetch movie details. Replace with actual API call.
 const fetchMovieById = async (id: string): Promise<Movie | undefined> => {
-  // Implement the fetch call to your backend to get the movie details by ID
-  return undefined;
+  try {
+    const response = await fetch(`/api/movies/${id}`, {
+      method: 'GET',
+    });
+    if (!response.ok) {
+      throw new Error('HTTP error ' + response.status);
+    }
+    const movie = await response.json();
+    return movie;
+  } catch (error) {
+    console.error('Error fetching movie:', error);
+    //setError('Error fetching movie. Please try again.');
+    return undefined;
+  }
 };
 
 const MovieDetails: React.FC = () => {
@@ -25,7 +36,8 @@ const MovieDetails: React.FC = () => {
   return (
     <div>
       <h1>{movie.title}</h1>
-      <h2>Directed by {movie.director}</h2>
+      <h3>Directed by {movie.director}</h3>
+      <p>{movie.synopsis}</p>
     </div>
   );
 };

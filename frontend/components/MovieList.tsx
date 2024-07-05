@@ -4,7 +4,8 @@ import MovieCard from './MovieCard';
 interface Movie {
   id: number;
   title: string;
-  director: string
+  director: string,
+  synopsis?: string;
 }
 
 const MovieList: React.FC = () => {
