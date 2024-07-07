@@ -55,7 +55,7 @@ router.get("/movies/:id", async (req: Request, res: Response) => {
 
 router.post("/movies", async (req, res) => {
   try {
-    const { title, director } = req.body;
+    const { title, director, synopsis } = req.body;
 
     if (!title || !director) {
       return res.status(400).json({ error: "Title and director are required" });
@@ -63,7 +63,7 @@ router.post("/movies", async (req, res) => {
 
     const id = uuidv4();
 
-    const newMovie = await MovieModel.create({ id, title, director });
+    const newMovie = await MovieModel.create({ id, title, director, synopsis });
 
     res.status(201).json(newMovie);
   } catch (err) {

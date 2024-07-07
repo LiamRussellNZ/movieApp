@@ -7,7 +7,6 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 const App: React.FC = () => {
   return (
     <div>
-      <h1>Movie List</h1>
       <MovieList />
     </div>
   );

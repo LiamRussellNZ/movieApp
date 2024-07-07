@@ -11,6 +11,7 @@ interface Movie {
 const MovieList: React.FC = () => {
   const [movieTitle, setMovieTitle] = useState('');
   const [director, setDirector] = useState('');
+  const [synopsis, setSynopsis] = useState('');
   const [movies, setMovies] = useState<Movie[]>([]);
   const [error, setError] = useState('');
 
@@ -22,16 +23,24 @@ const MovieList: React.FC = () => {
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.placeholder === 'Movie title') {
-      setMovieTitle(e.target.value);
-    } else if (e.target.placeholder === 'Director') {
-      setDirector(e.target.value);
+    switch (e.target.placeholder) {
+      case 'Movie title':
+        setMovieTitle(e.target.value);
+        break;
+      case 'Director':
+        setDirector(e.target.value);
+        break;
+      case 'Synopsis':
+        setSynopsis(e.target.value);
+        break;
+      default:
+        break;
     }
   };
 
   const handleAddMovie = () => {
   if (movieTitle.trim() !== '' && director.trim() !== '') {
-    const newMovie = { title: movieTitle, director };
+    const newMovie = { title: movieTitle, director, synopsis: synopsis.trim() ? synopsis : undefined};
 
     fetch('/api/movies', {
       method: 'POST',
@@ -51,6 +60,7 @@ const MovieList: React.FC = () => {
 
         setMovieTitle('');
         setDirector('');
+        setSynopsis('');
       })
       .catch((error) => {
         console.error('Error adding movie:', error);
@@ -88,38 +98,67 @@ const MovieList: React.FC = () => {
 
 const handleEditMovie = (movie: Movie) => {/*...*/};
 
-  return (
-    <div>
-      <div>
+return (
+  <div className="container mt-3">
+    <div className="row">
+      <div className="col-12">
+        <h1>Movie List</h1>
+      </div>
+    </div>
+    <div className="row">
+      <div className="col-md-3">
         <input
           type="text"
+          className="form-control"
           value={movieTitle}
           onChange={handleInputChange}
           onKeyDown={handleKeyPress}
           placeholder="Movie title"
         />
+      </div>
+      <div className="col-md-3">
         <input
           type="text"
+          className="form-control"
           value={director}
           onChange={handleInputChange}
           onKeyDown={handleKeyPress}
           placeholder="Director"
         />
-        <button type='button' className='btn btn-success' onClick={handleAddMovie}><i className="bi bi-plus-circle-fill"></i></button>
-        {error && <div className='alert alert-danger'>{error}</div>}
       </div>
-      <ul>
-      {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            onDelete={handleDeleteMovie}
-            onEdit={handleEditMovie}
-          />
-      ))}
-      </ul>
+      <div className="col-md-3">
+        <input
+          type="text"
+          className="form-control"
+          value={synopsis}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
+          placeholder="Synopsis"
+        />
+      </div>
+      <div className="col-md-3">
+        <button type='button' className='btn btn-success' onClick={handleAddMovie}>
+          <i className="bi bi-plus-circle-fill"></i> Add Movie
+        </button>
+      </div>
     </div>
-  );
+    {error && <div className='alert alert-danger mt-2'>{error}</div>}
+    <div className="row">
+      <div className="col-12">
+        <ul>
+          {movies.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onDelete={handleDeleteMovie}
+              onEdit={handleEditMovie}
+            />
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+);
 };
 
 export default MovieList;
