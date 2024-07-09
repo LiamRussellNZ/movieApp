@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import "../styles/MovieCard.css";
 
 interface MovieCardProps {
   movie: {
@@ -8,19 +9,17 @@ interface MovieCardProps {
     director: string;
   };
   onDelete: (id: number) => void;
-  onEdit: (movie: { id: number; title: string; director: string }) => void;
 }
 
-const MovieCard: React.FC<MovieCardProps> = ({ movie, onDelete, onEdit }) => {
+const MovieCard: React.FC<MovieCardProps> = ({ movie, onDelete }) => {
     return (
-        <Link to={`/movie/${movie.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-          <div style={{ border: '1px solid #ccc', padding: '10px', margin: '10px 0', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <div>
+        <Link to={`/movie/${movie.id}`} className='movie-card'>
+          <div className="movie-card-content">
+            <div className="movie-info">
               <h3>{movie.title}</h3>
               <p>Directed by {movie.director}</p>
             </div>
-            <div>
-              <button onClick={(e) => { e.stopPropagation(); onEdit(movie); }} style={{ marginRight: '10px' }}>Modify</button>
+            <div className="movie-actions">
               <button onClick={(e) => { e.stopPropagation(); onDelete(movie.id); }}>Delete</button>
             </div>
           </div>

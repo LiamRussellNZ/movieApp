@@ -1,0 +1,35 @@
+.movie-card {
+    display: block;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    text-decoration: none;
+    color: black;
+  }
+  
+  .movie-card-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .movie-info {
+    flex-grow: 1;
+  }
+  
+  .movie-actions {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .movie-card h3, .movie-card p {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .movie-card a {
+    color: black;
+    text-decoration: none;
+  }
+  

@@ -96,8 +96,6 @@ const MovieList: React.FC = () => {
     });
 }
 
-const handleEditMovie = (movie: Movie) => {/*...*/};
-
 return (
   <div className="container mt-3">
     <div className="row">
@@ -151,7 +149,6 @@ return (
               key={movie.id}
               movie={movie}
               onDelete={handleDeleteMovie}
-              onEdit={handleEditMovie}
             />
           ))}
         </ul>
