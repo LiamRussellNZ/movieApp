@@ -12,19 +12,19 @@ interface MovieCardProps {
 }
 
 const MovieCard: React.FC<MovieCardProps> = ({ movie, onDelete }) => {
-    return (
-        <Link to={`/movie/${movie.id}`} className='movie-card'>
-          <div className="movie-card-content">
-            <div className="movie-info">
-              <h3>{movie.title}</h3>
-              <p>Directed by {movie.director}</p>
-            </div>
-            <div className="movie-actions">
-              <button onClick={(e) => { e.stopPropagation(); onDelete(movie.id); }}>Delete</button>
-            </div>
+  return (
+      <div className='movie-card'>
+        <Link to={`/movie/${movie.id}`} className='movie-card-content'>
+          <div className="movie-info">
+            <h3>{movie.title}</h3>
+            <p>Directed by {movie.director}</p>
           </div>
         </Link>
-      );
+        <div className="movie-actions">
+          <button onClick={(e) => { e.stopPropagation(); onDelete(movie.id); }}>Delete</button>
+        </div>
+      </div>
+    );
 };
 
 export default MovieCard;
