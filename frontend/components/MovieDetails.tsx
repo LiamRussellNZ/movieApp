@@ -15,7 +15,6 @@ const fetchMovieById = async (id: string): Promise<Movie | undefined> => {
     return movie;
   } catch (error) {
     console.error('Error fetching movie:', error);
-    //setError('Error fetching movie. Please try again.');
     return undefined;
   }
 };
