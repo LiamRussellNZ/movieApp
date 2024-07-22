@@ -63,7 +63,7 @@ To run this project locally, you'll need to have Node.js and npm installed on yo
 
 Follow these steps:
 
-1. **Clone the repository** to your local machine:
+1. **Clone the repository**:
 
     ```sh
     git clone https://github.com/LiamRussellNZ/movieApp.git
@@ -73,16 +73,10 @@ Follow these steps:
 
     ```sh
     cd movieapp/frontend
-    ```
-
-3. **Compile and Build the frondend components**:
-
-    ```sh  
-    tsc
     npm run build
     ```
 
-4. **Start the server**:
+3. **Start the server**:
 
     Navigate to the backend folder and then run:
 
