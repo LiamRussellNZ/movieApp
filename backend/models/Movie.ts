@@ -13,6 +13,10 @@ const MovieSchema = new dynamoose.Schema({
     type: String,
     required: true,
   },
+  synopsis: {
+    type: String,
+    required: false,
+  },
 });
 
 const Movie = dynamoose.model("Movies", MovieSchema);

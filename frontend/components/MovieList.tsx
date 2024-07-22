@@ -1,37 +1,48 @@
 import React, { useState, useEffect } from 'react';
+import MovieCard from './MovieCard';
 
 interface Movie {
   id: number;
   title: string;
-  director: string
+  director: string,
+  synopsis?: string;
 }
 
 const MovieList: React.FC = () => {
   const [movieTitle, setMovieTitle] = useState('');
   const [director, setDirector] = useState('');
+  const [synopsis, setSynopsis] = useState('');
   const [movies, setMovies] = useState<Movie[]>([]);
   const [error, setError] = useState('');
 
   useEffect(() => {
-    fetch('https://movie-app.app.ap.assurity.cloud/api/movies')
+    fetch('/api/movies')
       .then((response) => response.json())
       .then((data: Movie[]) => setMovies(data))
       .catch((error) => console.error('Error fetching movies:', error));
   }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.placeholder === 'Movie title') {
-      setMovieTitle(e.target.value);
-    } else if (e.target.placeholder === 'Director') {
-      setDirector(e.target.value);
+    switch (e.target.placeholder) {
+      case 'Movie title':
+        setMovieTitle(e.target.value);
+        break;
+      case 'Director':
+        setDirector(e.target.value);
+        break;
+      case 'Synopsis':
+        setSynopsis(e.target.value);
+        break;
+      default:
+        break;
     }
   };
 
   const handleAddMovie = () => {
   if (movieTitle.trim() !== '' && director.trim() !== '') {
-    const newMovie = { title: movieTitle, director };
+    const newMovie = { title: movieTitle, director, synopsis: synopsis.trim() ? synopsis : undefined};
 
-    fetch('https://movie-app.app.ap.assurity.cloud/api/movies', {
+    fetch('/api/movies', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,6 +60,7 @@ const MovieList: React.FC = () => {
 
         setMovieTitle('');
         setDirector('');
+        setSynopsis('');
       })
       .catch((error) => {
         console.error('Error adding movie:', error);
@@ -66,7 +78,7 @@ const MovieList: React.FC = () => {
   };
 
   const handleDeleteMovie = (id: number) => {
-  fetch(`https://movie-app.app.ap.assurity.cloud/api/movies/${id}`, {
+  fetch(`/api/movies/${id}`, {
     method: 'DELETE',
   })
     .then((response) => {
@@ -84,38 +96,67 @@ const MovieList: React.FC = () => {
     });
 }
 
-  return (
-    <div>
-      <div>
+return (
+  <div className="container mt-3">
+    <div className="row">
+      <div className="col-12">
+        <h1>Movie List</h1>
+      </div>
+    </div>
+    <div className="row">
+      <div className="col-md-3">
         <input
           type="text"
+          className="form-control"
           value={movieTitle}
           onChange={handleInputChange}
           onKeyDown={handleKeyPress}
           placeholder="Movie title"
         />
+      </div>
+      <div className="col-md-3">
         <input
           type="text"
+          className="form-control"
           value={director}
           onChange={handleInputChange}
           onKeyDown={handleKeyPress}
           placeholder="Director"
         />
-        <button type='button' className='btn btn-success' onClick={handleAddMovie}><i className="bi bi-plus-circle-fill"></i></button>
-        {error && <div className='alert alert-danger'>{error}</div>}
       </div>
-      <ul>
-        {movies.map((movie, id) => (
-          <React.Fragment key={id}>
-            <div>
-              <li>{movie.title} - Directed by {movie.director}</li>
-              <button type='button' className='btn btn-danger' onClick={() => handleDeleteMovie(movie.id)}><i className="bi bi-trash-fill"></i></button>
-            </div>
-          </React.Fragment>
-        ))}
-      </ul>
+      <div className="col-md-3">
+        <input
+          type="text"
+          className="form-control"
+          value={synopsis}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyPress}
+          placeholder="Synopsis"
+        />
+      </div>
+      <div className="col-md-3">
+        <button type='button' className='btn btn-success' onClick={handleAddMovie}>
+          <i className="bi bi-plus-circle-fill"></i> Add Movie
+        </button>
+      </div>
     </div>
-  );
+    {error && <div className='alert alert-danger mt-2'>{error}</div>}
+    <div className="row">
+      <div className="col-12">
+        <ul>
+          {movies.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              onDelete={handleDeleteMovie}
+            />
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+);
 };
 
 export default MovieList;
+export { Movie };

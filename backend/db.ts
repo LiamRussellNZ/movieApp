@@ -4,29 +4,37 @@ import process from "process";
 
 dotenv.config();
 
-const VCAP_SERVICES = JSON.parse(process.env.VCAP_SERVICES || "");
-const { region, access_key_id, secret_access_key } =
-  VCAP_SERVICES["csb-aws-dynamodb-table"][0].credentials;
+const useLocalDB = process.env.REACT_APP_LOCAL === "true";
 
-if (!VCAP_SERVICES) {
-  console.error("DynamoDB service is not available");
+console.log("LocalDB flag: ", useLocalDB);
+if (useLocalDB) {
+  dynamoose.aws.ddb.local("http://localhost:8000");
+  console.log("Using local DynamoDB instance");
+} else {
+  const VCAP_SERVICES = JSON.parse(process.env.VCAP_SERVICES || "");
+  const { region, access_key_id, secret_access_key } =
+    VCAP_SERVICES["csb-aws-dynamodb-table"][0].credentials;
+
+  if (!VCAP_SERVICES) {
+    console.error("DynamoDB service is not available");
+  }
+
+  if (!region || !access_key_id || !secret_access_key) {
+    throw new Error(
+      "Missing required environment variables for DynamoDB configuration"
+    );
+  }
+
+  // Create new DynamoDB instance
+  const ddb = new dynamoose.aws.ddb.DynamoDB({
+    credentials: {
+      accessKeyId: access_key_id,
+      secretAccessKey: secret_access_key,
+    },
+    region: region,
+  });
+
+  dynamoose.aws.ddb.set(ddb);
 }
-
-if (!region || !access_key_id || !secret_access_key) {
-  throw new Error(
-    "Missing required environment variables for DynamoDB configuration"
-  );
-}
-
-// Create new DynamoDB instance
-const ddb = new dynamoose.aws.ddb.DynamoDB({
-  credentials: {
-    accessKeyId: access_key_id,
-    secretAccessKey: secret_access_key,
-  },
-  region: region,
-});
-
-dynamoose.aws.ddb.set(ddb);
 
 export default dynamoose;

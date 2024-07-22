@@ -33,21 +33,81 @@ router.get("/movies", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/movies", async (req, res) => {
+router.get("/movies/:id", async (req: Request, res: Response) => {
   try {
-    const { title, director } = req.body;
+    const { id } = req.params;
+    console.log(`Request to fetch movie with id: ${id}`);
 
-    if (!title || !director) {
-      return res.status(400).json({ error: "Title and director are required" });
+    const movie = await MovieModel.get(id);
+
+    if (!movie) {
+      console.log(`Movie with id ${id} not found`);
+      return res.status(404).json({ error: "Movie not found" });
     }
 
-    const id = uuidv4();
-
-    const newMovie = await MovieModel.create({ id, title, director });
-
-    res.status(201).json(newMovie);
+    const { title, director, synopsis } = movie;
+    res.json({ title, director, synopsis });
   } catch (err) {
-    console.error("Error creating movie:", err);
+    console.error("Error fetching movie:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.post("/movies", async (req, res) => {
+  try {
+    const movies = req.body;
+
+    console.log("Request to create movies", movies);
+
+    if (!Array.isArray(movies)) {
+      return res.status(400).json({ error: "Invalid request body" });
+    }
+
+    const createdMovies = await Promise.all(
+      movies.map(async (movie) => {
+        const { title, director, synopsis } = movie;
+
+        if (!title || !director) {
+          throw new Error("Title and director are required");
+        }
+
+        const id = uuidv4();
+
+        const newMovie = await MovieModel.create({
+          id,
+          title,
+          director,
+          synopsis,
+        });
+
+        return newMovie;
+      })
+    );
+
+    res.status(201).json(createdMovies);
+  } catch (err) {
+    console.error("Error creating movies:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+router.patch("/movies/:id", async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const updateData = req.body;
+    console.log(`Request to update movie with id: ${id}`);
+
+    const movie = await MovieModel.get(id);
+    if (!movie) {
+      console.log(`Movie with id ${id} not found`);
+      return res.status(404).json({ error: "Movie not found" });
+    }
+
+    const updatedMovie = await MovieModel.update({ id, ...updateData });
+
+    res.json(updatedMovie);
+  } catch (err) {
+    console.error("Error updating movie:", err);
     res.status(500).json({ error: "Internal server error" });
   }
 });
