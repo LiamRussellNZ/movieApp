@@ -130,4 +130,4 @@ Included in this project is an Open-API definition. This documentation can be ac
 
 ## Postman collection
 
-Included in the root directory of the repo is a Postman collection which demonstrates the API usage. The file called `Movies API.postman_collection` can be import into the Postman application.
+Included in the root directory of the repo is a Postman collection which demonstrates the API usage. The file called `Movies API.postman_collection` can be imported into the Postman application.
