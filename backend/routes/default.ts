@@ -65,7 +65,7 @@ router.post("/movies", async (req, res) => {
 
     const createdMovies = await Promise.all(
       movies.map(async (movie) => {
-        const { title, director, synopsis } = movie;
+        const { title, director, synopsis, releaseYear } = movie;
 
         if (!title || !director) {
           throw new Error("Title and director are required");
@@ -78,6 +78,7 @@ router.post("/movies", async (req, res) => {
           title,
           director,
           synopsis,
+          releaseYear,
         });
 
         return newMovie;

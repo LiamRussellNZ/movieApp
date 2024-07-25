@@ -1,10 +1,12 @@
 const bodyParser = require("body-parser");
 const express = require("express");
+const swaggerUi = require('swagger-ui-express');
+const YAML = require('yamljs');
+const path = require('path');
 const router = require("./routes/default.ts").default;
 
 const app = express();
 
-const path = require('path');
 const { resolve } = require('path');
 const publicPath = resolve(__dirname, '../frontend/dist');
 const staticConf = { maxAge: '1y', etag: false };
@@ -17,6 +19,12 @@ app.use((req, res, next) => {
     console.log(`The script uses approximately ${Math.round(used * 100) / 100} MB`);
     next();
   });
+
+// Load Swagger document
+const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'));
+
+// Serve Swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use(express.json({limit: '50mb', extended: true}));
 app.use(bodyParser.json());
