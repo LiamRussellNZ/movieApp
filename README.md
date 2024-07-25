@@ -67,6 +67,8 @@ Then simply run the image:
 docker run -p 8000:8000 amazon/dynamodb-local
 ```
 
+*Note*: If for any reason you change the binding port you'll also need to edit the `db.ts` file under the backend folder. The line that will need editing is `dynamoose.aws.ddb.local("http://localhost:8000");`.
+
 To interact with Dynamo, the AWS CLI tool will come in handy. Instructions for installation can be found [here](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 You will need to configure the credentials for the CLI. Do this with the following:
 
