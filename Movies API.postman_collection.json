@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "0a825057-aeaa-45d3-bff5-eacd1ff18694",
+		"name": "Movies API",
+		"description": "Collection for interacting with the movies api.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30545330"
+	},
+	"item": [
+		{
+			"name": "movies",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Hostname}}/api/movies/",
+					"host": [
+						"{{Hostname}}"
+					],
+					"path": [
+						"api",
+						"movies",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies/:id",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{Hostname}}/api/movies/3f7fe38b-ea5e-464b-bc18-f2a87e5e3985",
+					"host": [
+						"{{Hostname}}"
+					],
+					"path": [
+						"api",
+						"movies",
+						"3f7fe38b-ea5e-464b-bc18-f2a87e5e3985"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{Hostname}}/api/movies/3f7fe38b-ea5e-464b-bc18-f2a87e5e3985",
+					"host": [
+						"{{Hostname}}"
+					],
+					"path": [
+						"api",
+						"movies",
+						"3f7fe38b-ea5e-464b-bc18-f2a87e5e3985"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies (Success)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n        \"synopsis\": \"In a post-apocalyptic wasteland, a woman rebels against a tyrannical ruler in search for her homeland with the help of a group of female prisoners, a psychotic worshiper, and a drifter named Max.\",\r\n        \"title\": \"Mad Max: Fury Road\",\r\n        \"director\": \"George Miller\",\r\n        \"releaseYear\": \"2015\"\r\n    },\r\n    {\r\n        \"synopsis\": \"Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.\",\r\n        \"title\": \"The Shawshank Redemption\",\r\n        \"director\": \"Frank Darabont\",\r\n        \"releaseYear\": \"1994\"\r\n    },\r\n    {\r\n        \"synopsis\": \"A young boy in Hitler's army finds out his mother is hiding a Jewish girl in their home.\",\r\n        \"title\": \"Jojo Rabbit\",\r\n        \"director\": \"Taika Waititi\",\r\n        \"releaseYear\": \"2019\"\r\n    },\r\n    {\r\n        \"synopsis\": \"Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.\",\r\n        \"title\": \"Star Wars: Episode IV - A New Hope\",\r\n        \"director\": \"George Lucas\",\r\n        \"releaseYear\": \"1977\"\r\n    },\r\n    {\r\n        \"synopsis\": \"After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett.\",\r\n        \"title\": \"Star Wars: Episode V - The Empire Strikes Back\",\r\n        \"director\": \"Irvin Kershner\",\r\n        \"releaseYear\": \"1980\"\r\n    },\r\n    {\r\n        \"synopsis\": \"After a daring mission to rescue Han Solo from Jabba the Hutt, the Rebels dispatch to Endor to destroy the second Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor's trap.\",\r\n        \"title\": \"Star Wars: Episode VI - Return of the Jedi\",\r\n        \"director\": \"Richard Marquand\",\r\n        \"releaseYear\": \"1983\"\r\n    },\r\n    {\r\n        \"synopsis\": \"Two Jedi escape a hostile blockade to find allies and come across a young boy who may bring balance to the Force, but the long dormant Sith resurface to reclaim their old glory.\",\r\n        \"title\": \"Star Wars: Episode I - The Phantom Menace\",\r\n        \"director\": \"George Lucas\",\r\n        \"releaseYear\": \"1999\"\r\n    },\r\n    {\r\n        \"synopsis\": \"Ten years after initially meeting, Anakin Skywalker shares a forbidden romance with Padmé Amidala, while Obi-Wan Kenobi investigates an assassination attempt on the Senator and discovers a secret clone army crafted for the Jedi.\",\r\n        \"title\": \"Star Wars: Episode II - Attack of the Clones\",\r\n        \"director\": \"George Lucas\",\r\n        \"releaseYear\": \"2002\"\r\n    },\r\n    {\r\n        \"synopsis\": \"Three years into the Clone Wars, the Jedi rescue Palpatine from Count Dooku. As Obi-Wan pursues a new threat, Anakin acts as a double agent between the Jedi Council and Palpatine and is lured into a sinister plan to rule the galaxy.\",\r\n        \"title\": \"Star Wars: Episode III - Revenge of the Sith\",\r\n        \"director\": \"George Lucas\",\r\n        \"releaseYear\": \"2005\"\r\n    },\r\n    {\r\n        \"synopsis\": \"As a new threat to the galaxy rises, Rey, a desert scavenger, and Finn, an ex-stormtrooper, join Han Solo and Chewbacca to search for the one hope of restoring peace.\",\r\n        \"title\": \"Star Wars: Episode VII - The Force Awakens\",\r\n        \"director\": \"J.J. Abrams\",\r\n        \"releaseYear\": \"2015\"\r\n    },\r\n    {\r\n        \"synopsis\": \"Rey develops her newly discovered abilities with the guidance of Luke Skywalker, who is unsettled by the strength of her powers. Meanwhile, the Resistance prepares for battle with the First Order.\",\r\n        \"title\": \"Star Wars: Episode VIII - The Last Jedi\",\r\n        \"director\": \"Rian Johnson\",\r\n        \"releaseYear\": \"2017\"\r\n    },\r\n    {\r\n        \"synopsis\": \"The surviving members of the resistance face the First Order once again, and the legendary conflict between the Jedi and the Sith reaches its peak bringing the Skywalker saga to its end.\",\r\n        \"title\": \"Star Wars: Episode IX - The Rise of Skywalker\",\r\n        \"director\": \"J.J. Abrams\",\r\n        \"releaseYear\": \"2019\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{Hostname}}/api/movies",
+					"host": [
+						"{{Hostname}}"
+					],
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "movies (error)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[{ \"title\": \"Birdman\" }]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/movies",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"movies"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
